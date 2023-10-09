@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b10c5jijc4h2x"]
+
+[ext_resource type="Texture2D" uid="uid://6xe454trgw4q" path="res://Sprites/GUI/item_box.png" id="1_7mtuk"]
+[ext_resource type="Script" path="res://utility/GUI/item_container.gd" id="2_kj0jo"]
+
+[node name="ItemContainer" type="TextureRect"]
+texture_filter = 1
+offset_right = 12.0
+offset_bottom = 12.0
+texture = ExtResource("1_7mtuk")
+script = ExtResource("2_kj0jo")
+
+[node name="ItemTexture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+expand_mode = 1
