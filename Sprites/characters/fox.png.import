@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7bmvya5b2mp1"
-path="res://.godot/imported/feather.png-3ce528894ca35c0cb3b0f55094e110eb.ctex"
+uid="uid://deohds6rddtrm"
+path="res://.godot/imported/fox.png-99fb7f94f61a4ba9419c8c9556ee7031.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/weapons/feather.png"
-dest_files=["res://.godot/imported/feather.png-3ce528894ca35c0cb3b0f55094e110eb.ctex"]
+source_file="res://Sprites/characters/fox.png"
+dest_files=["res://.godot/imported/fox.png-99fb7f94f61a4ba9419c8c9556ee7031.ctex"]
 
 [params]
 

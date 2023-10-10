@@ -18,6 +18,7 @@ config/icon="res://Sprites/items/icon.svg"
 [autoload]
 
 UpgradeDb="*res://utility/UpgradeDB.gd"
+WeaponDb="*res://utility/WeaponDB.gd"
 
 [display]
 

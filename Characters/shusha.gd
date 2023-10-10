@@ -5,18 +5,9 @@ var expirience = 0
 var expirience_level = 1
 var collected_expirience = 0
 
-# Weapons
-var feather = preload("res://Characters/weapons/feather blade.tscn")
-
-@onready var featherTimer = get_node("%FeatherTimer")
-@onready var featherAttackTimer = get_node("%FeatherAttackTimer")
-
-var feather_ammo = 0
-var feather_baseammo = 0
-var feather_attackspeed = 1.5
-var feather_level = 0
-
 # GUI
+@onready var Weapons = $Weapons
+
 @onready var ExpBar = $"../WorldGUI/GUI/ExpBar"
 @onready var ExpLevel = $"../WorldGUI/GUI/ExpBar/ExpLevel"
 
@@ -45,9 +36,14 @@ var attack_cooldown = 0
 var attack_size = 0
 var additional_attacks = 0
 var damage = 1.0
+var luck = 0
 
 # Target selection
 var enemy_close = []
+
+# Animation
+@onready var fox = $fox
+var time = 0.0
 
 func _ready():
 	attack()
@@ -56,23 +52,30 @@ func _ready():
 	_on_hurt_box_hurt(0, 0, 0)
 
 func _process(_delta):
-	movement()
+	movement(_delta)
 
-func movement():
+func movement(delta):
 	var x_str = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var y_str = Input.get_action_strength("down") - Input.get_action_strength("up")
 	var mov = Vector2(x_str,y_str)
+	
+	if mov.x < 0:
+		fox.flip_h = true
+	if mov.x > 0:
+		fox.flip_h = false
+
+	if mov != Vector2.ZERO:
+		time += delta
+		fox.rotation_degrees = sin(time * 5) * 5
 	
 	velocity = mov.normalized() * speed
 	
 	move_and_slide() 
 
 func attack():
-	if feather_level > 0:
-		featherTimer.wait_time = feather_attackspeed * (1 - attack_cooldown)
-		
-		if featherTimer.is_stopped():
-			featherTimer.start()
+	for i in Weapons.get_children():
+		if i.type == WeaponDb.WeaponType.Attack && i.has_method("attack"):
+			i.attack()
 
 func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= clamp(damage - armor, 1.0, max_hp * max_hp)
@@ -81,27 +84,6 @@ func _on_hurt_box_hurt(damage, _angle, _knockback):
 	
 	if hp <= 0:
 		death()
-
-func _on_feather_timer_timeout():
-	feather_ammo += feather_baseammo + additional_attacks
-	featherAttackTimer.start()
-
-func _on_feather_attack_timer_timeout():
-	if feather_ammo > 0:
-		var feather_attack = feather.instantiate()
-		
-		feather_attack.position = position
-		feather_attack.target = get_random_target()
-		feather_attack.level = 1
-		
-		add_child(feather_attack)
-		
-		feather_ammo -= 1
-		
-		if feather_ammo > 0:
-			featherAttackTimer.start()
-		else:
-			featherAttackTimer.stop()
 
 func get_random_target():
 	if enemy_close.size() > 0:
@@ -172,6 +154,9 @@ func lvlup():
 	var options = 0
 	var options_max = 3
 	
+	if (randi_range(0,100) + luck) >= 100:
+		options_max += 1
+	
 	while options < options_max:
 		var option_choise = ItemOptions.instantiate()
 		option_choise.item = get_random_item()
@@ -182,11 +167,13 @@ func lvlup():
 func upgrade_character(upgrade):
 	match upgrade:
 		"featherblade1":
-			feather_level = 1
-			feather_baseammo += 1
+			var feather = load(WeaponDb.Weapon["featherblade"]["path"]).instantiate()
+			Weapons.add_child(feather)
+			feather.feather_level = 1
+			feather.feather_baseammo += 1
 		"featherblade2":
-			feather_level = 2
-			feather_baseammo += 1
+			Weapons.get_node("feather_blade_weapon").feather_level = 2
+			Weapons.get_node("feather_blade_weapon").feather_baseammo += 1
 		"cat":
 			hp += 20
 			hp = clamp(hp, 0, max_hp)

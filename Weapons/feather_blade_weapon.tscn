@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh1ixd142xr7w"]
+
+[ext_resource type="Script" path="res://Weapons/feather_blade_weapon.gd" id="1_6t7kb"]
+
+[node name="FeatherBladeWeapon" type="Node2D"]
+script = ExtResource("1_6t7kb")
+
+[node name="FeatherTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="FeatherAttackTimer" type="Timer" parent="FeatherTimer"]
+wait_time = 0.075
+
+[connection signal="timeout" from="FeatherTimer" to="." method="_on_feather_timer_timeout"]
+[connection signal="timeout" from="FeatherTimer/FeatherAttackTimer" to="." method="_on_feather_attack_timer_timeout"]

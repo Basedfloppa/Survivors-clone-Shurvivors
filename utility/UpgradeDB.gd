@@ -38,7 +38,7 @@ const UPGRADES = {
 	"cat": {
 		"icon": ICON_PATH + "cat.png",
 		"name": "Cat",
-		"description": "he sad :(",
+		"description": "heals 20hp",
 		"level": "N/A",
 		"prerequisite": [],
 		"type": "item"

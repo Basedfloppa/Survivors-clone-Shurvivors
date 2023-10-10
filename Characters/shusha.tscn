@@ -1,22 +1,25 @@
 [gd_scene load_steps=11 format=3 uid="uid://cqgh41117jll1"]
 
 [ext_resource type="Script" path="res://Characters/shusha.gd" id="1_y4u3s"]
-[ext_resource type="Texture2D" uid="uid://36v7yw3sarod" path="res://Sprites/characters/fox.jpeg" id="2_y8rv6"]
+[ext_resource type="Texture2D" uid="uid://deohds6rddtrm" path="res://Sprites/characters/fox.png" id="2_s25l6"]
 [ext_resource type="PackedScene" uid="uid://deqx75a3kyun2" path="res://utility/hurt_box.tscn" id="3_ummk0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1vnqb"]
-radius = 27.5
+radius = 12.5
 height = 62.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_iej8n"]
-radius = 37.3631
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jis76"]
+radius = 29.0
+height = 80.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_056m3"]
 radius = 1476.54
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nry3f"]
+radius = 80.0562
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4tm7t"]
+radius = 79.1012
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n44jx"]
 bg_color = Color(0, 0, 0, 1)
@@ -25,14 +28,17 @@ bg_color = Color(0, 0, 0, 1)
 bg_color = Color(1, 0, 0, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_y4u3s")
 
 [node name="fox" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
 scale = Vector2(0.25, 0.235)
-texture = ExtResource("2_y8rv6")
+texture = ExtResource("2_s25l6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0.5, 0)
 shape = SubResource("CapsuleShape2D_1vnqb")
 
@@ -42,19 +48,12 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-shape = SubResource("CircleShape2D_iej8n")
+position = Vector2(-1, -5)
+shape = SubResource("CapsuleShape2D_jis76")
 
 [node name="Weapons" type="Node2D" parent="."]
 visible = false
 position = Vector2(1, 2)
-
-[node name="FeatherTimer" type="Timer" parent="Weapons"]
-unique_name_in_owner = true
-wait_time = 1.5
-
-[node name="FeatherAttackTimer" type="Timer" parent="Weapons/FeatherTimer"]
-unique_name_in_owner = true
-wait_time = 0.075
 
 [node name="EnemyDetectionArea" type="Area2D" parent="."]
 visible = false
@@ -67,6 +66,7 @@ position = Vector2(-4, -1)
 shape = SubResource("CircleShape2D_056m3")
 
 [node name="GrabArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
@@ -74,6 +74,7 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_nry3f")
 
 [node name="CollectArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
@@ -92,8 +93,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_qlkif")
 show_percentage = false
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
-[connection signal="timeout" from="Weapons/FeatherTimer" to="." method="_on_feather_timer_timeout"]
-[connection signal="timeout" from="Weapons/FeatherTimer/FeatherAttackTimer" to="." method="_on_feather_attack_timer_timeout"]
 [connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
 [connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]

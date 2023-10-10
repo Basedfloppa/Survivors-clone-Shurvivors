@@ -15,6 +15,7 @@ func _ready():
 	connect("selected_upgrade", Callable(player,"upgrade_character"))
 	if item == null:
 		item = "cat"
+	
 	lblname.text = UpgradeDb.UPGRADES[item]["name"]
 	lbldescription.text = UpgradeDb.UPGRADES[item]["description"]
 	lbllevel.text = UpgradeDb.UPGRADES[item]["level"]

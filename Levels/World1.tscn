@@ -1,21 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgjb2fcfva2s7"]
+[gd_scene load_steps=8 format=3 uid="uid://dgjb2fcfva2s7"]
 
-[ext_resource type="Texture2D" uid="uid://cc0gmdlexatr7" path="res://Sprites/backgrounds/green-grass-512x512.jpg" id="1_j2g2q"]
+[ext_resource type="Texture2D" uid="uid://cxlol3dt62hug" path="res://Sprites/backgrounds/grass.png" id="1_2yyq8"]
+[ext_resource type="Shader" uid="uid://8hwsbcb3ykeh" path="res://Levels/World1.tres" id="1_wlvym"]
 [ext_resource type="PackedScene" uid="uid://cqgh41117jll1" path="res://Characters/shusha.tscn" id="2_b3fn5"]
 [ext_resource type="PackedScene" uid="uid://sl0smnnh3lvu" path="res://utility/enemy_spawner.tscn" id="3_4mw5k"]
 [ext_resource type="PackedScene" uid="uid://davccsh8w4d12" path="res://Loot/exp.tscn" id="4_td77x"]
 [ext_resource type="PackedScene" uid="uid://pi3wjwsomnbm" path="res://utility/GUI/world_gui.tscn" id="5_po5ra"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_db3o4"]
+shader = ExtResource("1_wlvym")
+
 [node name="World_1" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
 show_behind_parent = true
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(2, 0)
-texture = ExtResource("1_j2g2q")
+texture_repeat = 3
+material = SubResource("ShaderMaterial_db3o4")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_2yyq8")
 region_enabled = true
 region_rect = Rect2(0, 0, 1e+06, 1e+06)
+
+[node name="Loot" type="Node2D" parent="." groups=["loot"]]
+
+[node name="EXP" parent="." instance=ExtResource("4_td77x")]
+position = Vector2(1, 4)
+expirience = 5
 
 [node name="Player" parent="." instance=ExtResource("2_b3fn5")]
 position = Vector2(0, 4)
@@ -27,12 +37,6 @@ position_smoothing_speed = 1.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_4mw5k")]
 position = Vector2(-17, -8)
-
-[node name="Loot" type="Node2D" parent="." groups=["loot"]]
-
-[node name="EXP" parent="." instance=ExtResource("4_td77x")]
-position = Vector2(1, 4)
-expirience = 5
 
 [node name="WorldGUI" parent="." instance=ExtResource("5_po5ra")]
 
