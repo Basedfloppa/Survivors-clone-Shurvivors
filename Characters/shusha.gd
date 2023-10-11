@@ -172,8 +172,8 @@ func upgrade_character(upgrade):
 			feather.feather_level = 1
 			feather.feather_baseammo += 1
 		"featherblade2":
-			Weapons.get_node("feather_blade_weapon").feather_level = 2
-			Weapons.get_node("feather_blade_weapon").feather_baseammo += 1
+			Weapons.get_node("FeatherBladeWeapon").feather_level = 2
+			Weapons.get_node("FeatherBladeWeapon").feather_baseammo += 1
 		"cat":
 			hp += 20
 			hp = clamp(hp, 0, max_hp)

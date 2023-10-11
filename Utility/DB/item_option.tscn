@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://71yp23gwxxj3"]
+[gd_scene load_steps=3 format=3 uid="uid://bh7h4trm654ld"]
 
-[ext_resource type="Script" path="res://Utility/DB/item_option.gd" id="1_qdqbk"]
+[ext_resource type="Script" path="res://Utility/DB/item_option.gd" id="1_fdsda"]
 [ext_resource type="Texture2D" uid="uid://dpwv1s40plone" path="res://Sprites/items/cat.png" id="2_82s54"]
 
 [node name="ItemOption" type="ColorRect"]
@@ -8,7 +8,7 @@ custom_minimum_size = Vector2(180, 50)
 offset_right = 181.0
 offset_bottom = 52.0
 color = Color(0.439216, 0.517647, 0.337255, 1)
-script = ExtResource("1_qdqbk")
+script = ExtResource("1_fdsda")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0

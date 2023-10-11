@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c77acbgojq6wc"]
+
+[ext_resource type="Texture2D" uid="uid://cxlol3dt62hug" path="res://Sprites/backgrounds/grass.png" id="1_o0oy7"]
+
+[node name="Background" type="Sprite2D"]
+show_behind_parent = true
+texture_repeat = 3
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_o0oy7")
+region_enabled = true
+region_rect = Rect2(0, 0, 1e+06, 1e+06)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d25wb4jhft7d6"]
 
-[ext_resource type="Script" path="res://Characters/weapons/feather blade.gd" id="1_e4tot"]
+[ext_resource type="Script" path="res://Weapons/Projectiles/feather blade.gd" id="1_e4tot"]
 [ext_resource type="Texture2D" uid="uid://c2p16w4vlxa13" path="res://Sprites/weapons/feather_blade.png" id="2_cdhbs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okifm"]

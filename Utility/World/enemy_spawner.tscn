@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://sl0smnnh3lvu"]
 
-[ext_resource type="Script" path="res://utility/enemy_spawner.gd" id="1_r34ur"]
+[ext_resource type="Script" path="res://Utility/World/enemy_spawner.gd" id="1_r34ur"]
 [ext_resource type="PackedScene" uid="uid://bdkjps6mmqgaf" path="res://Enemies/zlokot.tscn" id="2_wamdo"]
-[ext_resource type="Script" path="res://utility/spawm_info.gd" id="3_c0bd6"]
+[ext_resource type="Script" path="res://Utility/World/spawm_info.gd" id="3_c0bd6"]
 
 [sub_resource type="Resource" id="Resource_qhghk"]
 script = ExtResource("3_c0bd6")

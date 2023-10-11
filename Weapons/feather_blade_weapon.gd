@@ -9,7 +9,7 @@ extends Node2D
 @onready var Player = get_tree().get_first_node_in_group("player")
 @onready var FeatherTimer = $FeatherTimer
 @onready var FeatherAttackTimer = $FeatherTimer/FeatherAttackTimer
-@onready var Feather = preload("res://Characters/weapons/feather blade.tscn")
+@onready var Feather = preload("res://Weapons/Projectiles/feather blade.tscn")
 
 func _ready():
 	attack()
@@ -29,7 +29,7 @@ func _on_feather_attack_timer_timeout():
 	if feather_ammo > 0:
 		var feather_attack = Feather.instantiate()
 		
-		feather_attack.position = position
+		feather_attack.position = global_position
 		feather_attack.target = Player.get_random_target()
 		feather_attack.level = 1
 		
