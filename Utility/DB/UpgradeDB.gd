@@ -29,10 +29,18 @@ const UPGRADES = {
 	},
 	"featherblade4": {
 		"icon": WEAPON_PATH + "feather_blade.png",
-		"name": "Ice Spear",
+		"name": "Feather Blade",
 		"description": "An additional 2 are thrown",
 		"level": "Level: 4",
 		"prerequisite": ["featherblade3"],
+		"type": "weapon"
+	},
+	"fuckingexplosion": {
+		"icon": WEAPON_PATH + "fuckingexplosion.png",
+		"name": "Fucking Explosion",
+		"description": "Explodes.",
+		"level": "Level: 1",
+		"prerequisite": [],
 		"type": "weapon"
 	},
 	"cat": {

@@ -26,6 +26,7 @@ var collected_expirience = 0
 @onready var ItemContainer = preload("res://utility/GUI/item_container.tscn")
 
 # Upgrades
+var weapons_list = {}
 var collected_upgrades = []
 var upgrade_options = []
 var hp = 100
@@ -35,7 +36,7 @@ var speed = 100
 var attack_cooldown = 0
 var attack_size = 0
 var additional_attacks = 0
-var damage = 1.0
+var damage_multiply = 1.0
 var luck = 0
 
 # Target selection
@@ -81,6 +82,10 @@ func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= clamp(damage - armor, 1.0, max_hp * max_hp)
 	HealthBar.max_value = max_hp
 	HealthBar.value = hp 
+	
+	for i in Weapons.get_children():
+		if i.type == WeaponDb.WeaponType.OnHit && i.has_method("onhit"):
+			i.onhit()
 	
 	if hp <= 0:
 		death()
@@ -168,12 +173,24 @@ func upgrade_character(upgrade):
 	match upgrade:
 		"featherblade1":
 			var feather = load(WeaponDb.Weapon["featherblade"]["path"]).instantiate()
-			Weapons.add_child(feather)
 			feather.feather_level = 1
 			feather.feather_baseammo += 1
+			
+			weapons_list["FeatherBlade"] = feather
+			Weapons.add_child(feather)
 		"featherblade2":
-			Weapons.get_node("FeatherBladeWeapon").feather_level = 2
-			Weapons.get_node("FeatherBladeWeapon").feather_baseammo += 1
+			weapons_list["FeatherBlade"].feather_level = 2
+			weapons_list["FeatherBlade"].feather_baseammo += 1
+		"featherblade3":
+			weapons_list["FeatherBlade"].feather_level = 3
+		"featherblade4":
+			weapons_list["FeatherBlade"].feather_level = 4
+			weapons_list["FeatherBlade"].feather_baseammo += 2
+		"fuckingexplosion":
+			var explosion = load(WeaponDb.Weapon["fuckingexplosion"]["path"]).instantiate()
+			
+			weapons_list["fuckingexplosion"] = explosion
+			Weapons.add_child(explosion)
 		"cat":
 			hp += 20
 			hp = clamp(hp, 0, max_hp)

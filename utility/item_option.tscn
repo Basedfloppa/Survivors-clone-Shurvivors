@@ -11,6 +11,7 @@ color = Color(0.439216, 0.517647, 0.337255, 1)
 script = ExtResource("1_qdqbk")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = 2.0
 offset_top = 6.0

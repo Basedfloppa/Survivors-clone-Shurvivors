@@ -1,12 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgjb2fcfva2s7"]
+[gd_scene load_steps=11 format=3 uid="uid://dgjb2fcfva2s7"]
 
-[ext_resource type="PackedScene" uid="uid://c77acbgojq6wc" path="res://Utility/World/background.tscn" id="1_2ahh6"]
+[ext_resource type="PackedScene" uid="uid://c77acbgojq6wc" path="res://utility/World/background.tscn" id="1_2ahh6"]
 [ext_resource type="PackedScene" uid="uid://cqgh41117jll1" path="res://Characters/shusha.tscn" id="2_b3fn5"]
-[ext_resource type="PackedScene" uid="uid://btwi85p4omw7p" path="res://Utility/World/loot.tscn" id="2_j0vtf"]
-[ext_resource type="PackedScene" uid="uid://sl0smnnh3lvu" path="res://Utility/World/enemy_spawner.tscn" id="3_4mw5k"]
+[ext_resource type="PackedScene" uid="uid://btwi85p4omw7p" path="res://utility/World/loot.tscn" id="2_j0vtf"]
+[ext_resource type="PackedScene" uid="uid://sl0smnnh3lvu" path="res://utility/World/enemy_spawner.tscn" id="3_4mw5k"]
 [ext_resource type="PackedScene" uid="uid://davccsh8w4d12" path="res://Loot/exp.tscn" id="4_td77x"]
 [ext_resource type="PackedScene" uid="uid://pi3wjwsomnbm" path="res://Utility/GUI/world_gui.tscn" id="5_po5ra"]
-[ext_resource type="PackedScene" uid="uid://dhmrlxx18ccq6" path="res://Utility/World/world_1_camera.tscn" id="5_ywe5j"]
+[ext_resource type="PackedScene" uid="uid://dhmrlxx18ccq6" path="res://utility/World/world_1_camera.tscn" id="5_ywe5j"]
+[ext_resource type="PackedScene" uid="uid://bdkjps6mmqgaf" path="res://Enemies/zlokot.tscn" id="7_hy52d"]
+[ext_resource type="Script" path="res://utility/World/spawm_info.gd" id="8_m6jdx"]
+
+[sub_resource type="Resource" id="Resource_7yslk"]
+script = ExtResource("8_m6jdx")
+time_start = 0
+time_end = 100
+enemy = ExtResource("7_hy52d")
+enemy_num = 5
+enemy_spawn_delay = 0
 
 [node name="World_1" type="Node2D"]
 
@@ -25,5 +35,6 @@ position = Vector2(0, 4)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_4mw5k")]
 position = Vector2(-17, -8)
+spawns = Array[ExtResource("8_m6jdx")]([SubResource("Resource_7yslk")])
 
 [node name="WorldGUI" parent="." instance=ExtResource("5_po5ra")]

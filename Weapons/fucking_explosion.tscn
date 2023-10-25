@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1vunay2vptr8"]
+
+[ext_resource type="Script" path="res://FuckingExplosion.gd" id="1_0cca2"]
+[ext_resource type="Texture2D" uid="uid://dlhok7raxmuch" path="res://Sprites/weapons/explosion.png" id="2_qj3qi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sw5cn"]
+
+[node name="FuckingExplosion" type="Area2D" groups=["attack"]]
+show_behind_parent = true
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_0cca2")
+
+[node name="Explosion2" type="Sprite2D" parent="."]
+position = Vector2(1.19209e-06, -2.98023e-08)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("2_qj3qi")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sw5cn")

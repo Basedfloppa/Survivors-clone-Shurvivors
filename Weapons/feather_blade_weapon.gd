@@ -31,7 +31,7 @@ func _on_feather_attack_timer_timeout():
 		
 		feather_attack.position = global_position
 		feather_attack.target = Player.get_random_target()
-		feather_attack.level = 1
+		feather_attack.level = feather_level
 		
 		Player.add_child(feather_attack)
 		
