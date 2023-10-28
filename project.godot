@@ -19,6 +19,8 @@ config/icon="res://Sprites/items/icon.svg"
 
 UpgradeDb="*res://Utility/DB/UpgradeDB.gd"
 WeaponDb="*res://Utility/DB/WeaponDB.gd"
+CharactersDb="*res://Utility/DB/CharactersDB.gd"
+Global="*res://Utility/DB/Global.gd"
 
 [display]
 

@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqgh41117jll1"]
+[gd_scene load_steps=11 format=3 uid="uid://ckhboao625ane"]
 
-[ext_resource type="Script" path="res://Characters/PlayerScript.gd" id="1_74fk3"]
-[ext_resource type="Texture2D" uid="uid://deohds6rddtrm" path="res://Sprites/characters/fox_character.png" id="2_so5c0"]
-[ext_resource type="PackedScene" uid="uid://deqx75a3kyun2" path="res://Utility/hurt_box.tscn" id="3_ummk0"]
+[ext_resource type="Script" path="res://Characters/PlayerScript.gd" id="1_w6jqd"]
+[ext_resource type="Texture2D" uid="uid://shxdyu4gdxdh" path="res://Sprites/characters/raven_card.png" id="2_lpidr"]
+[ext_resource type="PackedScene" uid="uid://deqx75a3kyun2" path="res://Utility/hurt_box.tscn" id="3_oca06"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1vnqb"]
 radius = 12.5
@@ -30,19 +30,19 @@ bg_color = Color(1, 0, 0, 1)
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 motion_mode = 1
-script = ExtResource("1_74fk3")
+script = ExtResource("1_w6jqd")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -7)
 scale = Vector2(0.25, 0.235)
-texture = ExtResource("2_so5c0")
+texture = ExtResource("2_lpidr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0.5, 0)
 shape = SubResource("CapsuleShape2D_1vnqb")
 
-[node name="HurtBox" parent="." instance=ExtResource("3_ummk0")]
+[node name="HurtBox" parent="." instance=ExtResource("3_oca06")]
 visible = false
 collision_layer = 2
 collision_mask = 2

@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 const ICON_PATH = "res://sprites/items/"
 const WEAPON_PATH = "res://sprites/weapons/"

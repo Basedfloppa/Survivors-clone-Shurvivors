@@ -43,7 +43,7 @@ var luck = 0
 var enemy_close = []
 
 # Animation
-@onready var fox = $fox
+@onready var sprite = $PlayerSprite
 var time = 0.0
 
 func _ready():
@@ -61,13 +61,13 @@ func movement(delta):
 	var mov = Vector2(x_str,y_str)
 	
 	if mov.x < 0:
-		fox.flip_h = true
+		sprite.flip_h = true
 	if mov.x > 0:
-		fox.flip_h = false
+		sprite.flip_h = false
 
 	if mov != Vector2.ZERO:
 		time += delta
-		fox.rotation_degrees = sin(time * 5) * 5
+		sprite.rotation_degrees = sin(time * 5) * 5
 	
 	velocity = mov.normalized() * speed
 	

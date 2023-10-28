@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpdqr7r4fa3lt"]
+
+[ext_resource type="Texture2D" uid="uid://1c6kwho6m46h" path="res://Sprites/characters/fox_card.png" id="1_743ys"]
+[ext_resource type="Script" path="res://Utility/GUI/character_card.gd" id="1_b43sq"]
+
+[node name="CharacterCard" type="Control"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -640.0
+offset_bottom = 50.0
+grow_horizontal = 2
+script = ExtResource("1_b43sq")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_right = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Зе беби"
+
+[node name="ColorRect" type="ColorRect" parent="RichTextLabel"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("1_743ys")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="."]
+light_mask = 0
+visibility_layer = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

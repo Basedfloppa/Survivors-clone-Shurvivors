@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 const WEAPON_PATH = "res://Weapons/"
 enum WeaponType {

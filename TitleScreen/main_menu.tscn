@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8sul8kd731vi"]
+[gd_scene load_steps=3 format=3 uid="uid://b8sul8kd731vi"]
 
 [ext_resource type="Script" path="res://TitleScreen/main_menu.gd" id="1_lvgbs"]
+[ext_resource type="PackedScene" uid="uid://scwg0iay2sd8" path="res://Utility/GUI/character_cards.tscn" id="2_hw37n"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -50,6 +51,17 @@ text = "Play"
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Exit"
+
+[node name="Character_Cards" parent="." instance=ExtResource("2_hw37n")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 640.0
+offset_top = 26.0
+offset_right = 940.0
+offset_bottom = 26.0
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
