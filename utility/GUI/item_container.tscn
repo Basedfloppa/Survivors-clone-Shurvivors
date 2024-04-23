@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b10c5jijc4h2x"]
 
 [ext_resource type="Texture2D" uid="uid://6xe454trgw4q" path="res://Sprites/GUI/item_box.png" id="1_7mtuk"]
-[ext_resource type="Script" path="res://utility/GUI/item_container.gd" id="2_kj0jo"]
+[ext_resource type="Script" path="res://Utility/GUI/item_container.gd" id="2_kj0jo"]
 
 [node name="ItemContainer" type="TextureRect"]
 texture_filter = 1

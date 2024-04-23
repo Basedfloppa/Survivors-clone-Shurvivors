@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bqi3y2co3x3m0" path="res://Sprites/GUI/exp_under.png" id="1_jsryf"]
 [ext_resource type="Texture2D" uid="uid://cdktjvewi7yfw" path="res://Sprites/GUI/exp_over.png" id="2_srhii"]
-[ext_resource type="Script" path="res://utility/GUI/MenuButton.gd" id="3_s1xd4"]
+[ext_resource type="Script" path="res://Utility/GUI/MenuButton.gd" id="3_s1xd4"]
 
 [node name="WorldGUI" type="CanvasLayer"]
 

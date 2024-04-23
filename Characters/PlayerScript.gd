@@ -22,8 +22,8 @@ var collected_expirience = 0
 
 @onready var HealthBar = get_node("%HealthBar")
 
-@onready var ItemOptions = preload("res://utility/item_option.tscn")
-@onready var ItemContainer = preload("res://utility/GUI/item_container.tscn")
+@onready var ItemOptions = preload("res://Utility/item_option.tscn")
+@onready var ItemContainer = preload("res://Utility/GUI/item_container.tscn")
 
 # Upgrades
 var weapons_list = {}

@@ -1,6 +1,6 @@
 extends Resource
 
-class_name Spawn_Info
+class_name spawn_info
 
 @export var time_start:int
 @export var time_end:int

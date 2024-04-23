@@ -1,20 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://sl0smnnh3lvu"]
 
 [ext_resource type="Script" path="res://Utility/World/enemy_spawner.gd" id="1_r34ur"]
-[ext_resource type="PackedScene" uid="uid://bdkjps6mmqgaf" path="res://Enemies/zlokot.tscn" id="2_akqrv"]
-[ext_resource type="Script" path="res://utility/World/spawm_info.gd" id="3_5j2cw"]
+[ext_resource type="PackedScene" uid="uid://bdkjps6mmqgaf" path="res://Enemies/zlokot.tscn" id="2_caovq"]
+[ext_resource type="Script" path="res://Utility/World/spawm_info.gd" id="3_c4um6"]
 
-[sub_resource type="Resource" id="Resource_32ivb"]
-script = ExtResource("3_5j2cw")
+[sub_resource type="Resource" id="Resource_brhbx"]
+script = ExtResource("3_c4um6")
 time_start = 0
-time_end = 500
-enemy = ExtResource("2_akqrv")
-enemy_num = 10
-enemy_spawn_delay = 10
+time_end = 100
+enemy = ExtResource("2_caovq")
+enemy_num = 5
+enemy_spawn_delay = 0
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_r34ur")
-spawns = Array[ExtResource("3_5j2cw")]([SubResource("Resource_32ivb")])
+spawns = Array[ExtResource("3_c4um6")]([SubResource("Resource_brhbx")])
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
