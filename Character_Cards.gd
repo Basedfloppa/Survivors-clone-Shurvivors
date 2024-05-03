@@ -1,10 +1,10 @@
 extends Control
 
-var card_path = "res://Utility/GUI/character_card.tscn"
+@onready var card_path = "res://Utility/GUI/character_card.tscn"
+@onready var tab_container = $TabContainer
 
 func _ready():
 	var counter = 5
-	var tab_container = $TabContainer
 	var current_tab = TabBar.new()
 	var current_box = VBoxContainer.new()
 	
@@ -13,12 +13,12 @@ func _ready():
 	current_tab.add_child(current_box)
 	tab_container.add_child(current_tab)
 	
-	for i in CharactersDb.Characters:
+	for character in CharactersDb.Characters:
 		var card = load(card_path).instantiate()
 		
-		card.Des = CharactersDb.Characters[i]["description"]
-		card.Char = CharactersDb.Characters[i]["path"]
-		card.Icon = CharactersDb.Characters[i]["icon"]
+		card.Des = character.description
+		card.Char = character.path
+		card.Icon = character.icon
 		
 		current_box.add_child(card)
 		counter -= 1

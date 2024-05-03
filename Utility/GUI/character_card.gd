@@ -1,6 +1,6 @@
 extends Control
 
-@onready var Parent = $"../../../.."
+@onready var Parent = get_node("/root/MainMenu/Character_Cards")
 
 @export var Des = ""
 @export var Icon = ""
@@ -13,5 +13,5 @@ func _ready():
 func _on_button_pressed():
 	Global.ChoosenCharacter = Char
 	var tween = Parent.create_tween()
-	tween.tween_property(Parent,"position",Vector2(640,0),1)
+	tween.tween_property(Parent,"position",Vector2(640,26),1)
 	tween.play()

@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://pi3wjwsomnbm"]
+[gd_scene load_steps=5 format=3 uid="uid://pi3wjwsomnbm"]
 
 [ext_resource type="Texture2D" uid="uid://bqi3y2co3x3m0" path="res://Sprites/GUI/exp_under.png" id="1_jsryf"]
 [ext_resource type="Texture2D" uid="uid://cdktjvewi7yfw" path="res://Sprites/GUI/exp_over.png" id="2_srhii"]
 [ext_resource type="Script" path="res://Utility/GUI/MenuButton.gd" id="3_s1xd4"]
+
+[sub_resource type="SystemFont" id="SystemFont_5qb2t"]
+font_names = PackedStringArray("Sans-Serif")
+generate_mipmaps = true
+multichannel_signed_distance_field = true
 
 [node name="WorldGUI" type="CanvasLayer"]
 
@@ -63,14 +68,18 @@ texture_progress = ExtResource("2_srhii")
 [node name="ExpLevel" type="Label" parent="GUI/ExpBar"]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 13
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -26.5
-offset_right = 27.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -17.5
+offset_right = 41.5
+offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_5qb2t")
 theme_override_font_sizes/font_size = 25
 text = "Level:0"
 horizontal_alignment = 1

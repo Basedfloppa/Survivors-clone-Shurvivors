@@ -26,18 +26,18 @@ var collected_expirience = 0
 @onready var ItemContainer = preload("res://Utility/GUI/item_container.tscn")
 
 # Upgrades
-var weapons_list = {}
-var collected_upgrades = []
-var upgrade_options = []
-var hp = 100
-var max_hp = 100
-var armor = 0
-var speed = 100
-var attack_cooldown = 0
-var attack_size = 0
-var additional_attacks = 0
-var damage_multiply = 1.0
-var luck = 0
+var weapons_list: Dictionary = {}
+var collected_upgrades: Array[Upgrade] = []
+var upgrade_options: Array[Upgrade] = [] #TODO: probably can be safely deleted with small changes to random item loop
+@export var hp = 100
+@export var max_hp = 100
+@export var armor = 0
+@export var speed = 100
+@export var attack_cooldown = 0
+@export var attack_size = 0
+@export var additional_attacks = 0
+@export var damage_multiply = 1.0
+@export var luck = 0
 
 # Target selection
 var enemy_close = []
@@ -149,7 +149,7 @@ func set_exp_bar(value = 1, max_value = 100):
 	ExpBar.max_value = max_value
 
 func lvlup():
-	ExpLevel.text = str("Level: ",expirience_level)
+	ExpLevel.text = str("Level: ",expirience_level-1)
 	
 	var tween = LevelUpPanel.create_tween()
 	tween.tween_property(LevelUpPanel,"position", Vector2(220,50),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
@@ -169,8 +169,8 @@ func lvlup():
 		options += 1
 	get_tree().paused = true
 
-func upgrade_character(upgrade):
-	match upgrade:
+func upgrade_character(upgrade: Upgrade) -> void:
+	match upgrade.upgrade_name:
 		"featherblade1":
 			var feather = load(WeaponDb.Weapon["featherblade"]["path"]).instantiate()
 			feather.feather_level = 1
@@ -212,49 +212,46 @@ func upgrade_character(upgrade):
 	get_tree().paused = false
 	calculate_expirience(0)
 
-func get_random_item():
-	var dblist = []
-	for i in UpgradeDb.UPGRADES:
-		if i in collected_upgrades: # if upgrade already collected
-			pass
-		elif i in upgrade_options: # if upgrade already in options
-			pass
-		elif UpgradeDb.UPGRADES[i]["type"] == "item": # dont pick food
-			pass
-		elif UpgradeDb.UPGRADES[i]["prerequisite"].size() > 0: #check prerequisites
-			for n in UpgradeDb.UPGRADES[i]["prerequisite"]:
-				if not n in collected_upgrades:
-					pass
-				else:
-					dblist.append(i)
-		else:
-			dblist.append(i)
-	if dblist.size() > 0:
-		var randomitem = dblist.pick_random()
-		upgrade_options.append(randomitem)
-		return randomitem
-	else:
-		return null
+func get_random_item() -> Upgrade:
+	var upgrade_list: Array[Upgrade] = []
 
-func adjust_gui_collection(upgrade):
-	var get_upgraded_displaynames = UpgradeDb.UPGRADES[upgrade]["name"]
-	var get_type = UpgradeDb.UPGRADES[upgrade]["type"]
+	for upgrade in UpgradeDb.UPGRADES:
+		if upgrade in collected_upgrades: continue #Upgrade already collected
+		if upgrade in upgrade_options: continue #Upgrade already in options
+		if upgrade.type == UpgradeDb.UpgradeType.Item: continue #Dont pick passives if posible
+		if upgrade.prerequisite.size() > 0: #Check prerequisites
+			for prerequisite in upgrade.prerequisite:
+				var a = collected_upgrades.map(func(collected: Upgrade): return collected.upgrade_name )
+				if prerequisite in a: 
+					upgrade_list.append(upgrade)
+		else: upgrade_list.append(upgrade)
 	
-	if get_type != "item":
-		var get_collected_displaynames = []
+	if upgrade_list.size() < 1: #Add passive items if no other availible
+		for upgrade in UpgradeDb.UPGRADES:
+			if upgrade.type == UpgradeDb.UpgradeType.Item: upgrade_list.append(upgrade) 
+
+	var random_item: Upgrade = upgrade_list.pick_random()
+	upgrade_options.append(random_item)
+	return random_item
+
+func adjust_gui_collection(upgrade: Upgrade) -> void:
+	var display_name: String = upgrade.display_upgrade_name
+	
+	if upgrade.type != UpgradeDb.UpgradeType.Item:
+		var collected_display_names = []
 		
-		for i in collected_upgrades:
-			get_collected_displaynames.append(UpgradeDb.UPGRADES[i]["name"])
+		for collected_upgrade in collected_upgrades:
+			collected_display_names.append(collected_upgrade.upgrade_name)
 		
-		if not get_upgraded_displaynames in get_collected_displaynames:
+		if not display_name in collected_display_names:
 			var new_item = ItemContainer.instantiate()
 			
 			new_item.upgrade = upgrade
 			
-			match get_type:
-				"weapon":
+			match upgrade.type:
+				UpgradeDb.UpgradeType.Weapon:
 					CollectedWeapons.add_child(new_item)
-				"upgrade":
+				UpgradeDb.UpgradeType.Passive:
 					CollectedUpgrades.add_child(new_item)
 
 func death():

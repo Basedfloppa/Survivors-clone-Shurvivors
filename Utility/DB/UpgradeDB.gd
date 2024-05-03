@@ -1,54 +1,66 @@
 extends Node
 
-const ICON_PATH = "res://sprites/items/"
-const WEAPON_PATH = "res://sprites/weapons/"
-const UPGRADES = {
-	"featherblade1": {
-		"icon": WEAPON_PATH + "feather_blade.png",
-		"name": "Feather Blade",
-		"description": "Sharp crow feather",
-		"level": "Level: 1",
-		"prerequisite": [],
-		"type": "weapon"
-	},
-	"featherblade2": {
-		"icon": WEAPON_PATH + "feather_blade.png",
-		"name": "Feather Blade",
-		"description": "More feathers",
-		"level": "Level: 2",
-		"prerequisite": ["featherblade1"],
-		"type": "weapon"
-	},
-	"featherblade3": {
-		"icon": WEAPON_PATH + "feather_blade.png",
-		"name": "Feather Blade",
-		"description": "pass through one enemy and +3 damage",
-		"level": "Level: 3",
-		"prerequisite": ["featherblade2"],
-		"type": "weapon"
-	},
-	"featherblade4": {
-		"icon": WEAPON_PATH + "feather_blade.png",
-		"name": "Feather Blade",
-		"description": "An additional 2 are thrown",
-		"level": "Level: 4",
-		"prerequisite": ["featherblade3"],
-		"type": "weapon"
-	},
-	"fuckingexplosion": {
-		"icon": WEAPON_PATH + "fuckingexplosion.png",
-		"name": "Fucking Explosion",
-		"description": "Explodes.",
-		"level": "Level: 1",
-		"prerequisite": [],
-		"type": "weapon"
-	},
-	"cat": {
-		"icon": ICON_PATH + "cat.png",
-		"name": "Cat",
-		"description": "heals 20hp",
-		"level": "N/A",
-		"prerequisite": [],
-		"type": "item"
-	}
+enum UpgradeType {
+	Weapon,
+	Item,
+	Passive
 }
+
+const ICON_PATH: String = "res://sprites/items/"
+const WEAPON_PATH: String = "res://sprites/weapons/"
+var UPGRADES: Array[Upgrade] = [
+	Upgrade.new(
+		"featherblade1", #Internal name
+		WEAPON_PATH + "feather_blade.png", #Icon path
+		"Feather Blade", #Discplay name
+		"Sharp crow feather", #Description
+		1, #Level of upgrade
+		[], #Prerequisites (array of strings)
+		UpgradeType.Weapon #Enum type of upgrade
+	),
+	Upgrade.new(
+		"featherblade2",
+		WEAPON_PATH + "feather_blade.png",
+		"Feather Blade",
+		"More feathers",
+		2,
+		["featherblade1"],
+		UpgradeType.Weapon
+	),
+	Upgrade.new(
+		"featherblade3",
+		WEAPON_PATH + "feather_blade.png",
+		"Feather Blade",
+		"pass through one enemy and +3 damage",
+		3,
+		["featherblade2"],
+		UpgradeType.Weapon
+	),
+	Upgrade.new(
+		"featherblade4",
+		WEAPON_PATH + "feather_blade.png",
+		"Feather Blade",
+		"An additional 2 are thrown",
+		4,
+		["featherblade3"],
+		UpgradeType.Weapon
+	),
+	Upgrade.new(
+		"fuckingexplosion",
+		WEAPON_PATH + "fuckingexplosion.png",
+		"Fucking Explosion",
+		"Explodes.",
+		1,
+		[],
+		UpgradeType.Weapon
+	),
+	Upgrade.new(
+		"cat", #Internal name
+		ICON_PATH + "cat.png", #Icon path
+		"Cat", #Discplay name
+		"heals 20hp", #Description
+		0, #Level of upgrade
+		[], #Prerequisites (array of strings)
+		UpgradeType.Item #Enum type of upgrade 
+	)
+]

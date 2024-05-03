@@ -1,14 +1,14 @@
 extends Node
 
-@export var Characters = {
-	"Shusha": {
-		"path": "res://Characters/shusha.tscn",
-		"icon": "res://Sprites/characters/fox_card.png",
-		"description": "Bebi"
-	},
-	"Lenish": {
-		"path": "res://Characters/lenish.tscn",
-		"icon": "res://Sprites/characters/raven_card.png",
-		"description": "Caw"
-	}
-}
+@export var Characters: Array[Character] = [
+	Character.new(
+		"Shusha", #Name
+		"res://Characters/shusha.tscn", #Path to actual character obj
+		"res://Sprites/characters/fox_card.png", #Icon
+		"Bebi"), #Description
+	Character.new(
+		"Lenish", #Name
+		"res://Characters/lenish.tscn", #Path to actual character obj
+		"res://Sprites/characters/raven_card.png", #Icon
+		"Caw") #Description
+]

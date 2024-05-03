@@ -1,12 +1,14 @@
 extends Node
 
-const WEAPON_PATH = "res://Weapons/"
 enum WeaponType {
 	Attack,
 	OnHit,
 	Passive,
 	Event
 }
+
+const WEAPON_PATH = "res://Weapons/"
+
 const Weapon = {
 	"featherblade": {
 		"path": WEAPON_PATH + "feather_blade_weapon.tscn"

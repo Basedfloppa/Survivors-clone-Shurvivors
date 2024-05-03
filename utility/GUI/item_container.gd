@@ -1,8 +1,8 @@
 extends TextureRect
 
-var upgrade = null
+var upgrade: Upgrade
 
 func _ready():
-	if upgrade != null:
-		%ItemTexture.texture = load(UpgradeDb.UPGRADES[upgrade]["icon"])
+	if upgrade:
+		%ItemTexture.texture = load(upgrade.icon_path)
 
