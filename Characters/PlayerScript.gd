@@ -1,43 +1,36 @@
 extends CharacterBody2D
 
 # Expirience
-var expirience = 0
-var expirience_level = 1
-var collected_expirience = 0
+var expirience: int = 0
+var expirience_level: int = 1
+var collected_expirience: int = 0
 
 # GUI
 @onready var Weapons = $Weapons
-
 @onready var ExpBar = $"../WorldGUI/GUI/ExpBar"
 @onready var ExpLevel = $"../WorldGUI/GUI/ExpBar/ExpLevel"
-
 @onready var LevelUpPanel = $"../WorldGUI/GUI/LevelUp"
 @onready var UpgradeOptions = $"../WorldGUI/GUI/LevelUp/UpgradeOptions"
-
 @onready var ResultText = $"../WorldGUI/GUI/DeathPanel/ResultText"
 @onready var DeathPanel = $"../WorldGUI/GUI/DeathPanel"
-
 @onready var CollectedWeapons = $"../WorldGUI/GUI/CollectedWeapons"
 @onready var CollectedUpgrades = $"../WorldGUI/GUI/CollectedUpgrades"
-
 @onready var HealthBar = get_node("%HealthBar")
-
 @onready var ItemOptions = preload("res://Utility/item_option.tscn")
 @onready var ItemContainer = preload("res://Utility/GUI/item_container.tscn")
 
 # Upgrades
 var weapons_list: Dictionary = {}
 var collected_upgrades: Array[Upgrade] = []
-var upgrade_options: Array[Upgrade] = [] #TODO: probably can be safely deleted with small changes to random item loop
-@export var hp = 100
-@export var max_hp = 100
-@export var armor = 0
-@export var speed = 100
-@export var attack_cooldown = 0
-@export var attack_size = 0
-@export var additional_attacks = 0
-@export var damage_multiply = 1.0
-@export var luck = 0
+@export var hp: int = 100
+@export var max_hp: int = 100
+@export var armor: int = 0
+@export var speed: int = 100
+@export var attack_cooldown: int = 0
+@export var attack_size: int = 0
+@export var additional_attacks: int = 0
+@export var damage_multiply: float = 1.0
+@export var luck: int = 0
 
 # Target selection
 var enemy_close = []
@@ -148,25 +141,22 @@ func set_exp_bar(value = 1, max_value = 100):
 	ExpBar.value = value
 	ExpBar.max_value = max_value
 
-func lvlup():
+func lvlup() -> void:
 	ExpLevel.text = str("Level: ",expirience_level-1)
 	
-	var tween = LevelUpPanel.create_tween()
+	var tween := LevelUpPanel.create_tween()
 	tween.tween_property(LevelUpPanel,"position", Vector2(220,50),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
 	tween.play
-	
 	LevelUpPanel.visible = true
-	var options = 0
-	var options_max = 3
 	
-	if (randi_range(0,100) + luck) >= 100:
-		options_max += 1
+	var options := 3
+	if (randi_range(0,100) + luck) >= 100: options += 1
 	
-	while options < options_max:
-		var option_choise = ItemOptions.instantiate()
-		option_choise.item = get_random_item()
+	for upgrade in get_random_item(options):
+		var option_choise := ItemOptions.instantiate()
+		option_choise.item = upgrade
 		UpgradeOptions.add_child(option_choise)
-		options += 1
+	
 	get_tree().paused = true
 
 func upgrade_character(upgrade: Upgrade) -> void:
@@ -200,10 +190,8 @@ func upgrade_character(upgrade: Upgrade) -> void:
 	
 	var option_children = UpgradeOptions.get_children()
 	
-	for i in option_children:
-		i.queue_free()
+	for i in option_children: i.queue_free()
 	
-	upgrade_options.clear()
 	collected_upgrades.append(upgrade)
 	
 	LevelUpPanel.visible = false
@@ -212,27 +200,29 @@ func upgrade_character(upgrade: Upgrade) -> void:
 	get_tree().paused = false
 	calculate_expirience(0)
 
-func get_random_item() -> Upgrade:
-	var upgrade_list: Array[Upgrade] = []
-
-	for upgrade in UpgradeDb.UPGRADES:
-		if upgrade in collected_upgrades: continue #Upgrade already collected
-		if upgrade in upgrade_options: continue #Upgrade already in options
-		if upgrade.type == UpgradeDb.UpgradeType.Item: continue #Dont pick passives if posible
-		if upgrade.prerequisite.size() > 0: #Check prerequisites
-			for prerequisite in upgrade.prerequisite:
-				var a = collected_upgrades.map(func(collected: Upgrade): return collected.upgrade_name )
-				if prerequisite in a: 
-					upgrade_list.append(upgrade)
-		else: upgrade_list.append(upgrade)
+func get_random_item(amount: int) -> Array[Upgrade]:
+	var result: Array[Upgrade] = []
 	
-	if upgrade_list.size() < 1: #Add passive items if no other availible
+	for i in amount:
+		var upgrade_list: Array[Upgrade] = []
+		
 		for upgrade in UpgradeDb.UPGRADES:
-			if upgrade.type == UpgradeDb.UpgradeType.Item: upgrade_list.append(upgrade) 
-
-	var random_item: Upgrade = upgrade_list.pick_random()
-	upgrade_options.append(random_item)
-	return random_item
+			if upgrade in collected_upgrades: continue #Upgrade already collected
+			if upgrade in result: continue #Upgrade already in options
+			if upgrade.type == UpgradeDb.UpgradeType.Item: continue #Dont pick passives if posible
+			if upgrade.prerequisite.size() > 0: #Check prerequisites
+				for prerequisite in upgrade.prerequisite:
+					var a = collected_upgrades.map(func(collected: Upgrade): return collected.upgrade_name )
+					if prerequisite in a: upgrade_list.append(upgrade)
+			else: upgrade_list.append(upgrade)
+		
+		if upgrade_list.size() < 1: #Add passive items if no other availible
+			for upgrade in UpgradeDb.UPGRADES:
+				if upgrade.type == UpgradeDb.UpgradeType.Item: upgrade_list.append(upgrade) 
+		
+		result.append(upgrade_list.pick_random())
+	
+	return result
 
 func adjust_gui_collection(upgrade: Upgrade) -> void:
 	var display_name: String = upgrade.display_upgrade_name
@@ -241,7 +231,7 @@ func adjust_gui_collection(upgrade: Upgrade) -> void:
 		var collected_display_names = []
 		
 		for collected_upgrade in collected_upgrades:
-			collected_display_names.append(collected_upgrade.upgrade_name)
+			collected_display_names.append(collected_upgrade.display_upgrade_name)
 		
 		if not display_name in collected_display_names:
 			var new_item = ItemContainer.instantiate()
@@ -254,7 +244,7 @@ func adjust_gui_collection(upgrade: Upgrade) -> void:
 				UpgradeDb.UpgradeType.Passive:
 					CollectedUpgrades.add_child(new_item)
 
-func death():
+func death() -> void:
 	DeathPanel.visible = true
 	get_tree().paused = true
 	
