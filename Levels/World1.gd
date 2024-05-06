@@ -1,17 +1,16 @@
 extends Node2D
 
-@export var BackGround_path = "res://Sprites/backgrounds/grass.png"
-var Player_path = Global.ChoosenCharacter
-@export var Gui_path = "res://Utility/GUI/world_gui.tscn"
-@export var EnemySpawner_path = "res://Utility/World/enemy_spawner.tscn"
+@export var BackGround_path: String = "res://Sprites/backgrounds/grass.png"
+@export var Gui_path: String = "res://Utility/GUI/world_gui.tscn"
+@export var EnemySpawner_path: String = "res://Utility/World/enemy_spawner.tscn"
 
-var BackGround = Sprite2D.new()
-var Player = load(Player_path).instantiate()
+var Player_path: String = Global.ChoosenCharacter
+var BackGround: Sprite2D = Sprite2D.new()
+var Player: PlayerClass = load(Player_path).instantiate()
 var Gui = load(Gui_path).instantiate()
 var EnemySpawner = load(EnemySpawner_path).instantiate()
 
-
-func _ready():
+func _ready() -> void:
 	BackGround.texture = load(BackGround_path)
 	BackGround.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
 	BackGround.region_enabled = true

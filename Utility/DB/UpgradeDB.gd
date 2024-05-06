@@ -8,6 +8,7 @@ enum UpgradeType {
 
 const ICON_PATH: String = "res://sprites/items/"
 const WEAPON_PATH: String = "res://sprites/weapons/"
+
 var UPGRADES: Array[Upgrade] = [
 	Upgrade.new(
 		"featherblade1", #Internal name

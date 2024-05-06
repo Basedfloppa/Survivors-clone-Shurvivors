@@ -1,12 +1,12 @@
 extends Area2D
 
-@export var damage = 1
-@onready var collision = $CollisionShape2D
-@onready var disabletimer = $DisableHitBoxTimer
+@export var damage: int = 1
+@onready var collision: CollisionShape2D = $Collision
+@onready var disable_timer: Timer = $DisableTimer
 
-func tempdisable():
+func temp_disable() -> void:
 	collision.call_deferred("set","disabled",true)
-	disabletimer.start()
+	disable_timer.start()
 
-func _on_disable_hit_box_timer_timeout():
+func _on_disable_hit_box_timer_timeout() -> void:
 	collision.call_deferred("set","disabled",false)

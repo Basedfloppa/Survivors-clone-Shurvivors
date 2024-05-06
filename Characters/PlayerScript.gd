@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name PlayerClass
+
 # Expirience
 var expirience: int = 0
 var expirience_level: int = 1

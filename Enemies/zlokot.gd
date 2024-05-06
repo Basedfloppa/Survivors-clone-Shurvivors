@@ -1,33 +1,28 @@
 extends CharacterBody2D
 
-@export var spd = 50
-@export var hp = 10
-@export var knockback_recovery = 3.5
-@export var expirience = 1
+@export var spd: int = 50
+@export var hp: int = 10
+@export var knockback_recovery: float = 3.5
+@export var expirience: int = 1
 
-var knockback = Vector2.ZERO
-var direction = Vector2.ZERO
-var animation_time = 0.0 
+var knockback: Vector2 = Vector2.ZERO
+var direction: Vector2 = Vector2.ZERO
+var animation_time: float = 0.0 
 
-@onready var ExpGem = preload("res://loot/exp.tscn")
-@onready var LootBase = get_tree().get_first_node_in_group("loot")
-@onready var Player = get_tree().get_first_node_in_group("player")
-@onready var EnemyTexture = $Enemy
+@onready var ExpGem := preload("res://loot/exp.tscn")
+@onready var LootBase := get_tree().get_first_node_in_group("loot")
+@onready var Player := get_tree().get_first_node_in_group("player")
+@onready var EnemyTexture := $Enemy
 
 signal remove_from_array(object)
 
-func _process(delta):
+func _process(delta) -> void:
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_recovery)
-	
 	direction = global_position.direction_to(Player.global_position)
-	
 	velocity = direction * spd
 	
-	if velocity.x < 0:
-		EnemyTexture.flip_h = true
-	if velocity.x > 0:
-		EnemyTexture.flip_h = false
-
+	if velocity.x < 0: EnemyTexture.flip_h = true
+	if velocity.x > 0: EnemyTexture.flip_h = false
 	if velocity != Vector2.ZERO:
 		animation_time += delta
 		EnemyTexture.rotation_degrees = sin(animation_time * 5) * 5
@@ -38,7 +33,7 @@ func _process(delta):
 	move_and_slide()
 
 
-func _on_hurt_box_hurt(damage, angle, knockback_amount):
+func _on_hurt_box_hurt(damage, angle, knockback_amount) -> void:
 	hp -= damage
 	knockback = angle * knockback_amount
 	if hp <= 0:

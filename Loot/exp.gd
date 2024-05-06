@@ -1,10 +1,8 @@
 extends Area2D
 
-@export var expirience = 1
-@export var target = self
+@export var expirience: int = 1
+@export var target: Node = self
 
-func collect():
-	return expirience
+func collect() -> int: return expirience
 
-func _on_timer_timeout():
-	queue_free()
+func _on_timer_timeout() -> void: queue_free()

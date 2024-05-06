@@ -9,11 +9,11 @@
 radius = 18.0
 height = 36.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_budq6"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_yx0pf"]
 radius = 41.0122
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_aihl6"]
-radius = 23.0217
+[sub_resource type="CircleShape2D" id="CircleShape2D_p7t5s"]
+radius = 49.0102
 
 [node name="Zlokot" type="CharacterBody2D"]
 collision_layer = 4
@@ -21,7 +21,6 @@ script = ExtResource("1_77hn0")
 
 [node name="Enemy" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(2.5, 9.53674e-07)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_bhfh4")
 
@@ -33,15 +32,15 @@ collision_layer = 4
 collision_mask = 4
 HurtBoxType = 1
 
-[node name="CollisionShape2D" parent="HurtBox" index="0"]
-shape = SubResource("CircleShape2D_budq6")
+[node name="Collision" parent="HurtBox" index="0"]
+shape = SubResource("CircleShape2D_yx0pf")
 
 [node name="HitBox" parent="." instance=ExtResource("4_omd60")]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" parent="HitBox" index="0"]
-shape = SubResource("CircleShape2D_aihl6")
+[node name="Collision" parent="HitBox" index="0"]
+shape = SubResource("CircleShape2D_p7t5s")
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 
