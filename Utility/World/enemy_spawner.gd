@@ -17,7 +17,7 @@ func _on_timer_timeout() -> void:
 			else:
 				i.spawn_delay_counter = 0
 				for j in i.enemy_num:
-					var enemy_spawn: Node = i.enemy.instantiate()
+					var enemy_spawn = load(EnemiesDb._Enemies[i.enemy].path).instantiate()
 					enemy_spawn.global_position = get_random_position()
 					add_child(enemy_spawn)
 	change_time()
