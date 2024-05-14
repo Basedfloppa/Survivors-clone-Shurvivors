@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bdkjps6mmqgaf"]
 
-[ext_resource type="Script" path="res://Enemies/zlokot.gd" id="1_77hn0"]
+[ext_resource type="Script" path="res://Enemies/Enemy.gd" id="1_77hn0"]
 [ext_resource type="Texture2D" uid="uid://dw731p26pdfl6" path="res://Sprites/enemies/enemy.png" id="2_bhfh4"]
 [ext_resource type="PackedScene" uid="uid://deqx75a3kyun2" path="res://Utility/hurt_box.tscn" id="3_4x0qf"]
 [ext_resource type="PackedScene" uid="uid://cebxmhs2icmlq" path="res://Utility/hit_box.tscn" id="4_omd60"]

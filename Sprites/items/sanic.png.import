@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuc1uk1fcsdc7"
-path="res://.godot/imported/grass.png-8fb907eabbdd7ecb532ee2b62194d084.ctex"
+uid="uid://caoidr2815o5g"
+path="res://.godot/imported/sanic.png-0322067e2e6eeb0a498d68ec27ab7836.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/backgrounds/grass.png"
-dest_files=["res://.godot/imported/grass.png-8fb907eabbdd7ecb532ee2b62194d084.ctex"]
+source_file="res://Sprites/items/sanic.png"
+dest_files=["res://.godot/imported/sanic.png-0322067e2e6eeb0a498d68ec27ab7836.ctex"]
 
 [params]
 

@@ -4,7 +4,7 @@ class_name spawn_info
 
 @export var time_start:int
 @export var time_end:int
-@export var enemy: EnemiesDb.Enemies
+@export var enemy: EnemiesDb.EnemyTypes
 @export var enemy_num:int
 @export var enemy_spawn_delay:int
 

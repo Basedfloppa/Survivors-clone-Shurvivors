@@ -18,7 +18,7 @@ var collected_expirience: int = 0
 @onready var CollectedWeapons = $"../WorldGUI/GUI/CollectedWeapons"
 @onready var CollectedUpgrades = $"../WorldGUI/GUI/CollectedUpgrades"
 @onready var HealthBar = get_node("%HealthBar")
-@onready var ItemOptions = preload("res://Utility/item_option.tscn")
+@onready var ItemOptions = preload("res://Utility/GUI/item_option.tscn")
 @onready var ItemContainer = preload("res://Utility/GUI/item_container.tscn")
 
 # Upgrades
@@ -186,6 +186,9 @@ func upgrade_character(upgrade: Upgrade) -> void:
 		"cat":
 			hp += 20
 			hp = clamp(hp, 0, max_hp)
+			HealthBar.value = hp 
+		"speed":
+			speed += 20
 	
 	adjust_gui_collection(upgrade)
 	attack()

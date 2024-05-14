@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://scwg0iay2sd8"]
 
-[ext_resource type="Script" path="res://Character_Cards.gd" id="1_2tvt7"]
+[ext_resource type="Script" path="res://Utility/GUI/Character_Cards.gd" id="1_2tvt7"]
 
 [node name="Character_Cards" type="Control"]
 custom_minimum_size = Vector2(300, 0)

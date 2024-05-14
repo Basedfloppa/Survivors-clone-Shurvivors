@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Enemy_class
+
 @export var spd: int = 50
 @export var hp: int = 10
 @export var knockback_recovery: float = 3.5
@@ -31,7 +33,6 @@ func _process(delta) -> void:
 	velocity += knockback
 	
 	move_and_slide()
-
 
 func _on_hurt_box_hurt(damage, angle, knockback_amount) -> void:
 	hp -= damage

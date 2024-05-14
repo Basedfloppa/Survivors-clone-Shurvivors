@@ -1,10 +1,10 @@
 extends ColorRect
 
 @onready var Player: PlayerClass = get_tree().get_first_node_in_group("player")
-@onready var NameLablel: Label = %Name
-@onready var DescriptionLablel: Label = %Description
-@onready var LevelLablel: Label = %Level
-@onready var ItemIcon: TextureRect = %Icon
+@onready var NameLablel: Label = $HBox/VBox2/HBox2/Name # full path bc unique names wont load before instantiation 
+@onready var DescriptionLablel: Label = $HBox/VBox2/Description
+@onready var LevelLablel: Label = $HBox/VBox2/HBox2/Level
+@onready var ItemIcon: TextureRect = $HBox/ColorRect/Icon
 
 var mouse_over: bool
 var item: Upgrade

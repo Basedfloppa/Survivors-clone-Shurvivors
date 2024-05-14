@@ -56,6 +56,15 @@ var UPGRADES: Array[Upgrade] = [
 		UpgradeType.Weapon
 	),
 	Upgrade.new(
+		"speed",
+		ICON_PATH + "sanic.png",
+		"Sanic essence",
+		"+20 speed",
+		0,
+		[],
+		UpgradeType.Item
+	),
+	Upgrade.new(
 		"cat", #Internal name
 		ICON_PATH + "cat.png", #Icon path
 		"Cat", #Discplay name
