@@ -12,10 +12,9 @@ func _on_timer_timeout() -> void:
 	
 	for i in spawns:
 		if time >= i.time_start and time <= i.time_end:
-			if i.spawn_delay_counter < i.enemy_spawn_delay:
-				i.spawn_delay_counter += 1
+			if i.spawn_delay_counter != 0: i.spawn_delay_counter -= 1
 			else:
-				i.spawn_delay_counter = 0
+				i.spawn_delay_counter = i.enemy_spawn_delay
 				for j in i.enemy_num:
 					var enemy_spawn = load(EnemiesDb._Enemies[i.enemy].path).instantiate()
 					enemy_spawn.global_position = get_random_position()
