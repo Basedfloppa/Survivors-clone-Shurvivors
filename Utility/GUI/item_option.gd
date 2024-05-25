@@ -16,7 +16,10 @@ func _ready() -> void:
 	
 	NameLablel.text = item.display_upgrade_name
 	DescriptionLablel.text = item.description
-	LevelLablel.text = "Level: " + str(item.level)
+	if item.level > 0 :
+		LevelLablel.text = "Level: " + str(item.level)
+	else:
+		LevelLablel.text = ""
 	ItemIcon.texture = load(item.icon_path)
 
 func _input(event) -> void:

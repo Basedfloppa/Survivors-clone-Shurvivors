@@ -54,6 +54,8 @@ shape = SubResource("CapsuleShape2D_l36fc")
 show_behind_parent = true
 z_as_relative = false
 
+[node name="Upgrades" type="Node2D" parent="."]
+
 [node name="EnemyDetectionArea" type="Area2D" parent="."]
 visible = false
 collision_layer = 4

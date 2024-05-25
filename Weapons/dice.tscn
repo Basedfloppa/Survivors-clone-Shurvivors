@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://kq446obo5ffy"]
+
+[ext_resource type="Script" path="res://Weapons/dice.gd" id="1_h51yh"]
+
+[node name="Dice" type="Node2D"]
+script = ExtResource("1_h51yh")

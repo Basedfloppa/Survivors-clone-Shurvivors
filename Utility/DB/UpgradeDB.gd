@@ -65,6 +65,78 @@ var UPGRADES: Array[Upgrade] = [
 		UpgradeType.Item
 	),
 	Upgrade.new(
+		"blanket",
+		ICON_PATH + "icon.svg",
+		"Warm blanket",
+		"+1 armor",
+		0,
+		[],
+		UpgradeType.Item
+	),
+	Upgrade.new(
+		"coffe",
+		ICON_PATH + "icon.svg",
+		"Fresh coffe",
+		"-1 to attak cooldown",
+		0,
+		[],
+		UpgradeType.Item
+	),
+	Upgrade.new(
+		"ring",
+		ICON_PATH + "icon.svg",
+		"Lucky ring",
+		"+1 to luck",
+		0,
+		[],
+		UpgradeType.Item
+	),
+	Upgrade.new(
+		"tea",
+		ICON_PATH + "icon.svg",
+		"Fresh tea",
+		"+5 to max hp",
+		0,
+		[],
+		UpgradeType.Item
+	),
+	Upgrade.new(
+		"skirt",
+		ICON_PATH + "icon.svg",
+		"Flowery skirt",
+		"attaks everyone in a radius",
+		0,
+		[],
+		UpgradeType.Passive
+	),
+	Upgrade.new(
+		"cloak",
+		ICON_PATH + "icon.svg",
+		"Feather cloak",
+		"gives temporary boost to speed when hit",
+		0,
+		[],
+		UpgradeType.Passive
+	),
+	Upgrade.new(
+		"breeches",
+		ICON_PATH + "icon.svg",
+		"Steel reinforced breeches",
+		"decreeses speed but upgrades armor",
+		0,
+		[],
+		UpgradeType.Passive
+	),
+	Upgrade.new(
+		"dice",
+		ICON_PATH + "icon.svg",
+		"Dice of randomnes",
+		"upgrades random characteristic by 1",
+		0,
+		[],
+		UpgradeType.Passive
+	),
+	Upgrade.new(
 		"cat", #Internal name
 		ICON_PATH + "cat.png", #Icon path
 		"Cat", #Discplay name

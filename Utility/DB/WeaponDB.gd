@@ -15,5 +15,17 @@ const Weapon = {
 	},
 	"fuckingexplosion": {
 		"path": WEAPON_PATH + "fucking_explosion.tscn"
+	},
+	"skirt": {
+		"path": WEAPON_PATH + "skirt.tscn"
+	},
+	"cloak": {
+		"path": WEAPON_PATH + "cloak.tscn"
+	},
+	"breeches": {
+		"path": WEAPON_PATH + "breeches.tscn"
+	},
+	"dice": {
+		"path": WEAPON_PATH + "dice.tscn"
 	}
 }

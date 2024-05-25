@@ -9,6 +9,7 @@ var collected_expirience: int = 0
 
 # GUI
 @onready var Weapons = $Weapons
+@onready var Upgrades = $Upgrades
 @onready var ExpBar = $"../WorldGUI/GUI/ExpBar"
 @onready var ExpLevel = $"../WorldGUI/GUI/ExpBar/ExpLevel"
 @onready var LevelUpPanel = $"../WorldGUI/GUI/LevelUp"
@@ -17,12 +18,13 @@ var collected_expirience: int = 0
 @onready var DeathPanel = $"../WorldGUI/GUI/DeathPanel"
 @onready var CollectedWeapons = $"../WorldGUI/GUI/CollectedWeapons"
 @onready var CollectedUpgrades = $"../WorldGUI/GUI/CollectedUpgrades"
-@onready var HealthBar = get_node("%HealthBar")
+@onready var HealthBar: ProgressBar = get_node("%HealthBar")
 @onready var ItemOptions = preload("res://Utility/GUI/item_option.tscn")
 @onready var ItemContainer = preload("res://Utility/GUI/item_container.tscn")
 
 # Upgrades
 var weapons_list: Dictionary = {}
+var upgrade_list: Dictionary = {}
 var collected_upgrades: Array[Upgrade] = []
 @export var hp: int = 100
 @export var max_hp: int = 100
@@ -190,7 +192,43 @@ func upgrade_character(upgrade: Upgrade) -> void:
 			HealthBar.value = hp 
 		"speed":
 			speed += 20
-	
+		"blanket":
+			armor += 1
+		"coffe":
+			attack_cooldown += 1
+		"ring":
+			luck += 1
+		"tea":
+			hp += 5
+			max_hp += 5
+			HealthBar.value = hp
+			HealthBar.max_value = max_hp
+		"skirt":
+			var skirt = load(WeaponDb.Weapon["skirt"]["path"]).instantiate()
+			skirt.upgrade()
+
+			upgrade_list["skirt"] = skirt
+			Upgrades.add_child(skirt)
+		"cloak":
+			var cloak = load(WeaponDb.Weapon["cloak"]["path"]).instantiate()
+			cloak.level = 1
+
+			upgrade_list["cloak"] = cloak
+			Upgrades.add_child(cloak)
+		"breeches":
+			var breeches = load(WeaponDb.Weapon["cloak"]["path"]).instantiate()
+			breeches.level = 1
+
+			upgrade_list["breeches"] = breeches
+			Upgrades.add_child(breeches)
+		"dice":
+			var dice = load(WeaponDb.Weapon["dice"]["path"]).instantiate()
+			
+			upgrade_list["dice"] = dice
+			Upgrades.add_child(dice)
+			
+			dice.upgrade()
+
 	adjust_gui_collection(upgrade)
 	attack()
 	
