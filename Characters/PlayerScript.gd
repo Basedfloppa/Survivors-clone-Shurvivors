@@ -85,6 +85,10 @@ func _on_hurt_box_hurt(damage, _angle, _knockback):
 		if i.type == WeaponDb.WeaponType.OnHit && i.has_method("onhit"):
 			i.onhit()
 	
+	for i in Upgrades.get_children():
+		if i.type == WeaponDb.WeaponType.OnHit && i.has_method("onhit"):
+			i.onhit()
+	
 	if hp <= 0:
 		death()
 
@@ -211,13 +215,13 @@ func upgrade_character(upgrade: Upgrade) -> void:
 			Upgrades.add_child(skirt)
 		"cloak":
 			var cloak = load(WeaponDb.Weapon["cloak"]["path"]).instantiate()
-			cloak.level = 1
+			cloak.upgrade()
 
 			upgrade_list["cloak"] = cloak
 			Upgrades.add_child(cloak)
 		"breeches":
 			var breeches = load(WeaponDb.Weapon["cloak"]["path"]).instantiate()
-			breeches.level = 1
+			breeches.upgrade()
 
 			upgrade_list["breeches"] = breeches
 			Upgrades.add_child(breeches)
