@@ -1,12 +1,17 @@
 extends Node2D
 
 @export var type: WeaponDb.WeaponType = WeaponDb.WeaponType.OnHit
-@export var radius: int = 100
-@export var damage: int = 999
+@export var radius: float = 100
+@export var damage: float = 999
+
+@onready var Player: PlayerClass = get_tree().get_first_node_in_group("player")
 
 var size: Vector2 = Vector2(radius,radius)
 
-func _ready(): self.scale = Vector2.ZERO
+func _ready(): 
+	self.scale = Vector2.ZERO
+	damage = damage * Player.damage_multiply
+	radius = radius * Player.attack_size
 
 func _process(_delta) -> void:
 	if self.scale == Vector2(radius,radius):

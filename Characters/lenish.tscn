@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckhboao625ane"]
+[gd_scene load_steps=10 format=3 uid="uid://ckhboao625ane"]
 
 [ext_resource type="Script" path="res://Characters/PlayerScript.gd" id="1_w6jqd"]
 [ext_resource type="Texture2D" uid="uid://shxdyu4gdxdh" path="res://Sprites/characters/raven_card.png" id="2_lpidr"]
@@ -7,10 +7,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1vnqb"]
 radius = 12.5
 height = 62.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jis76"]
-radius = 29.0
-height = 80.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_056m3"]
 radius = 1476.54
@@ -46,10 +42,6 @@ shape = SubResource("CapsuleShape2D_1vnqb")
 visible = false
 collision_layer = 2
 collision_mask = 2
-
-[node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(-1, -5)
-shape = SubResource("CapsuleShape2D_jis76")
 
 [node name="Weapons" type="Node2D" parent="."]
 show_behind_parent = true

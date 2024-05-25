@@ -2,15 +2,15 @@ extends Area2D
 
 var level: int = 1
 var hp: int
-var speed: int
-var damage: int
+var speed: float
+var damage: float
 var knockback_amount: int
 var attack_size: float
 
 var target: Vector2 = Vector2.ZERO
 var angle: Vector2 = Vector2.ZERO
 
-@onready var Player: PlayerClass = get_tree().get_first_node_in_group("player")
+var Player: PlayerClass
 
 signal remove_from_array(object)
 
@@ -20,28 +20,28 @@ func _ready() -> void:
 	match level:
 		1:
 			hp = 1
-			speed = 100
-			damage = 5
+			speed = 100 * ( 1 + Player.projectile_speed)
+			damage = 5 * Player.damage_multiply
 			knockback_amount = 100
-			attack_size = 1.0 * (1 + Player.attack_size)
+			attack_size = 1 * Player.attack_size
 		2: 
 			hp = 1
-			speed = 100
-			damage = 5
+			speed = 100 * Player.projectile_speed
+			damage = 5 * Player.damage_multiply
 			knockback_amount = 100
-			attack_size = 1.0 * (1 + Player.attack_size)
+			attack_size = 1 * Player.attack_size
 		3:
 			hp = 2
-			speed = 100
-			damage = 8
+			speed = 100 * Player.projectile_speed
+			damage = 8 * Player.damage_multiply
 			knockback_amount = 100
-			attack_size = 1.0 * (1 + Player.attack_size)
+			attack_size = 1 * Player.attack_size
 		4:
 			hp = 2
-			speed = 100
-			damage = 10
+			speed = 100 * Player.projectile_speed
+			damage = 10 * Player.damage_multiply
 			knockback_amount = 100
-			attack_size = 1.0 * (1 + Player.attack_size)
+			attack_size = 1 * Player.attack_size
 	
 	self.scale = Vector2.ZERO
 	var tween = self.create_tween()
