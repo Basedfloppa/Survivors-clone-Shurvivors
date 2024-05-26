@@ -6,15 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://deqx75a3kyun2" path="res://Utility/hurt_box.tscn" id="4_q83t1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vfr0j"]
-radius = 31.1448
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0d80f"]
-radius = 50.0
-height = 130.0
+radius = 18.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6jpmc"]
 radius = 42.0
 height = 100.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0d80f"]
+radius = 50.0
+height = 130.0
 
 [node name="evil_fox" type="CharacterBody2D"]
 script = ExtResource("1_wxrxk")
@@ -30,6 +30,15 @@ texture = ExtResource("2_bkmhp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vfr0j")
 
+[node name="HurtBox" parent="." instance=ExtResource("4_q83t1")]
+collision_layer = 4
+collision_mask = 4
+HurtBoxType = 0
+
+[node name="Collision" parent="HurtBox" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6jpmc")
+
 [node name="HitBox" parent="." instance=ExtResource("3_roat2")]
 collision_layer = 2
 collision_mask = 2
@@ -39,13 +48,7 @@ position = Vector2(0, -6)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_0d80f")
 
-[node name="HurtBox" parent="." instance=ExtResource("4_q83t1")]
-collision_layer = 4
-collision_mask = 4
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 
-[node name="Collision" parent="HurtBox" index="0"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_6jpmc")
-
-[editable path="HitBox"]
 [editable path="HurtBox"]
+[editable path="HitBox"]

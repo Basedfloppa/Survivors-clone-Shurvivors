@@ -32,7 +32,7 @@ shape = SubResource("CapsuleShape2D_t5h1g")
 [node name="HurtBox" parent="." instance=ExtResource("4_13m7g")]
 collision_layer = 4
 collision_mask = 4
-HurtBoxType = 1
+HurtBoxType = 0
 
 [node name="Collision" parent="HurtBox" index="0"]
 shape = SubResource("CapsuleShape2D_nskmr")

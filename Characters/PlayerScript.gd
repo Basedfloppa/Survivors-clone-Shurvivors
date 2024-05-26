@@ -222,10 +222,11 @@ func upgrade_character(upgrade: Upgrade) -> void:
 			cloak.upgrade()
 		"breeches":
 			var breeches = load(WeaponDb.Weapon["breeches"]["path"]).instantiate()
-			breeches.upgrade()
 
 			upgrade_list["breeches"] = breeches
 			Upgrades.add_child(breeches)
+			
+			breeches.upgrade()
 		"dice":
 			var dice = load(WeaponDb.Weapon["dice"]["path"]).instantiate()
 			
