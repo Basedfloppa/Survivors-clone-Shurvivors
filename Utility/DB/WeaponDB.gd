@@ -16,6 +16,9 @@ const Weapon = {
 	"fuckingexplosion": {
 		"path": WEAPON_PATH + "fucking_explosion.tscn"
 	},
+	"shushasword": {
+		"path": WEAPON_PATH + "shush_sword_weapon.tscn"
+	},
 	"skirt": {
 		"path": WEAPON_PATH + "skirt.tscn"
 	},

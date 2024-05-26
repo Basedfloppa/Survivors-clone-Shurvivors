@@ -137,6 +137,15 @@ var UPGRADES: Array[Upgrade] = [
 		UpgradeType.Passive
 	),
 	Upgrade.new(
+		"shush_sword",
+		WEAPON_PATH + "sword.webp",
+		"Shusha's sword",
+		"Deals moderate damage in aoe cone in front of character",
+		0,
+		[],
+		UpgradeType.Weapon
+	),
+	Upgrade.new(
 		"cat", #Internal name
 		ICON_PATH + "cat.png", #Icon path
 		"Cat", #Discplay name

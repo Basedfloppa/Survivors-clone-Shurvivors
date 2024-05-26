@@ -41,7 +41,7 @@ var collected_upgrades: Array[Upgrade] = []
 var enemy_close = []
 
 # Animation
-@onready var sprite = $PlayerSprite
+@onready var sprite: Sprite2D = $PlayerSprite
 var time = 0.0
 
 func _ready():
@@ -234,6 +234,12 @@ func upgrade_character(upgrade: Upgrade) -> void:
 			Upgrades.add_child(dice)
 			
 			dice.upgrade()
+		"shush_sword":
+			var sword = load(WeaponDb.Weapon["shushasword"]["path"]).instantiate()
+			sword.level = 1
+
+			weapons_list["ShushSword"] = sword
+			Weapons.add_child(sword)
 
 	adjust_gui_collection(upgrade)
 	attack()
