@@ -3,7 +3,8 @@ extends Node
 enum EnemyTypes {
 	Zlokot_base,
 	Taxes_base,
-	Death
+	Death,
+	Evil_fox
 }
 
 @export var _Enemies: Array[Enemy] = [
@@ -18,5 +19,9 @@ enum EnemyTypes {
 	Enemy.new(
 		"Death",
 		"res://Enemies/death.tscn"
+	),
+	Enemy.new(
+		"Evil_fox",
+		"res://Enemies/evil_fox.tscn"
 	)
 ]

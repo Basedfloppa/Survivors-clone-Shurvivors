@@ -215,12 +215,13 @@ func upgrade_character(upgrade: Upgrade) -> void:
 			Upgrades.add_child(skirt)
 		"cloak":
 			var cloak = load(WeaponDb.Weapon["cloak"]["path"]).instantiate()
-			cloak.upgrade()
 
 			upgrade_list["cloak"] = cloak
 			Upgrades.add_child(cloak)
+
+			cloak.upgrade()
 		"breeches":
-			var breeches = load(WeaponDb.Weapon["cloak"]["path"]).instantiate()
+			var breeches = load(WeaponDb.Weapon["breeches"]["path"]).instantiate()
 			breeches.upgrade()
 
 			upgrade_list["breeches"] = breeches

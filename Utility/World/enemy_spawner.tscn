@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://sl0smnnh3lvu"]
+[gd_scene load_steps=7 format=3 uid="uid://sl0smnnh3lvu"]
 
 [ext_resource type="Script" path="res://Utility/World/enemy_spawner.gd" id="1_r34ur"]
 [ext_resource type="Script" path="res://Utility/World/spawm_info.gd" id="3_c4um6"]
@@ -19,6 +19,14 @@ enemy = 0
 enemy_num = 5
 enemy_spawn_delay = 2
 
+[sub_resource type="Resource" id="Resource_aa7i8"]
+script = ExtResource("3_c4um6")
+time_start = 150
+time_end = 300
+enemy = 3
+enemy_num = 5
+enemy_spawn_delay = 1
+
 [sub_resource type="Resource" id="Resource_fh4fr"]
 script = ExtResource("3_c4um6")
 time_start = 100
@@ -29,7 +37,7 @@ enemy_spawn_delay = 0
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_r34ur")
-spawns = Array[ExtResource("3_c4um6")]([SubResource("Resource_4s18q"), SubResource("Resource_fsw2q"), SubResource("Resource_fh4fr")])
+spawns = Array[ExtResource("3_c4um6")]([SubResource("Resource_4s18q"), SubResource("Resource_fsw2q"), SubResource("Resource_aa7i8"), SubResource("Resource_fh4fr")])
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

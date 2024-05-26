@@ -9,10 +9,12 @@ extends Node2D
 @onready var Speed_Timer: Timer = $Timer
 
 func onhit() -> void:
-	Speed_Timer.start()
-	Player.speed += spd_boost
+	if Speed_Timer.is_stopped():
+		Speed_Timer.start()
+		Player.speed += spd_boost
 
 func _on_timer_timeout() -> void:
+	Speed_Timer.stop()
 	Player.speed -= spd_boost
 
 func upgrade() -> void:
