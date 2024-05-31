@@ -4,8 +4,8 @@
 
 [node name="ShushSword" type="Node2D"]
 script = ExtResource("1_fimyx")
+attackspeed = 1.0
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

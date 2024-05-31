@@ -19,7 +19,7 @@ func attack() -> void:
 
 func _on_timer_timeout() -> void:
 	var sword: Node = Sword.instantiate()
-
+	
 	sword.level = level
 	sword.Player = Player
 	
