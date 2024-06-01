@@ -14,7 +14,7 @@ func _ready() -> void:
 	match(level):
 		1:
 			damage = 10 * Player.damage_multiply
-			self.scale = Vector2(1 * Player.attack_size, 1 * Player.attack_size)
+			self.scale = Vector2(2 * Player.attack_size, 2 * Player.attack_size)
 	
 	if Player.sprite.flip_h == true:
 		self.rotation_degrees = -130.0
